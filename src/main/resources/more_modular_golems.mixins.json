@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "more_modular_golems.refmap.json",
   "mixins": [
+    "GuardedEntityMixin"
   ],
   "client": [
   ],

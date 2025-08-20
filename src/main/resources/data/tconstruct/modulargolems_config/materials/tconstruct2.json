@@ -1,0 +1,23 @@
+{
+  "ingredients": {
+    "tconstruct:pig_iron": {
+      "tag": "forge:ingots/pig_iron"
+    }
+  },
+  "modifiers": {
+    "tconstruct:pig_iron": {
+      "more_modular_golems:tasty": 1
+    }
+  },
+  "repairIngredients": {
+    "tconstruct:pig_iron": {
+      "tag": "forge:ingots/pig_iron"
+    }
+  },
+  "stats": {
+    "tconstruct:pig_iron": {
+      "modulargolems:attack": 10.0,
+      "modulargolems:max_health": 80.0
+    }
+  }
+}

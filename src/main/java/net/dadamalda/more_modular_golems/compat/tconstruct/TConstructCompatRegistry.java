@@ -8,7 +8,7 @@ public class TConstructCompatRegistry {
     public static final RegistryEntry<TastyModifier> TASTY;
 
     static {
-        TASTY = MMGGolemModifiers.reg("tasty", TastyModifier::new, "Tasty", "You can bite your golem");
+        TASTY = MMGGolemModifiers.reg("tasty", TastyModifier::new, "Tasty", "You can eat your golem when hungry.");
     }
 
     public static void register() {}

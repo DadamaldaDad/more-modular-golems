@@ -26,9 +26,9 @@ public class TastyModifier extends GolemModifier {
         if(!(player instanceof ServerPlayer serverPlayer)) return InteractionResult.PASS;
         ServerLevel level = serverPlayer.serverLevel();
 
-        float damageAmount = 10F;
-        int restoredHunger = 4;
-        float restoredSaturation = 2.0F;
+        float damageAmount = 10F * value;
+        int restoredHunger = 2 * value;
+        float restoredSaturation = 1.0F;
         boolean canAlwaysEat = false;
 
         if(!Objects.equals(golem.getOwnerUUID(), serverPlayer.getUUID())) return InteractionResult.PASS;
@@ -48,7 +48,16 @@ public class TastyModifier extends GolemModifier {
                 SoundEvents.GENERIC_EAT,
                 SoundSource.PLAYERS,
                 1.0F,
-                1.0F);
+                1.0F + (level.random.nextFloat() - level.random.nextFloat()) * 0.4F);
+
+        level.playSound(null,
+                serverPlayer.getX(),
+                serverPlayer.getY(),
+                serverPlayer.getZ(),
+                SoundEvents.PLAYER_BURP,
+                SoundSource.PLAYERS,
+                0.5F,
+                1.0F + level.random.nextFloat() * 0.1F);
 
         return InteractionResult.SUCCESS;
         // return super.interact(player, golem, hand, value);

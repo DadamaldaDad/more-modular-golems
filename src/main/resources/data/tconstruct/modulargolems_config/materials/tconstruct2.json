@@ -16,8 +16,8 @@
   },
   "stats": {
     "tconstruct:pig_iron": {
-      "modulargolems:attack": 10.0,
-      "modulargolems:max_health": 80.0
+      "modulargolems:attack": 20.0,
+      "modulargolems:max_health": 130.0
     }
   }
 }

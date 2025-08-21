@@ -184,6 +184,9 @@ dependencies {
 
     implementation "io.github.llamalad7:mixinextras-forge:0.4.1"
 
+    implementation fg.deobf("maven.modrinth:tinkers-construct:3.10.2.92")
+    implementation fg.deobf("maven.modrinth:mantle:1.11.79")
+
     // runtimeOnly(fg.deobf("maven.modrinth:l2library:${l2library_version}-forge"))
 
     /*

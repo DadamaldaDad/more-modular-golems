@@ -1,10 +1,17 @@
 package net.dadamalda.more_modular_golems;
 
 import com.mojang.logging.LogUtils;
+import com.tterrag.registrate.providers.ProviderType;
 import dev.xkmc.l2library.base.L2Registrate;
+import net.dadamalda.more_modular_golems.compat.MMGCompatManager;
+import net.dadamalda.more_modular_golems.datagen.MMGLangGen;
+import net.dadamalda.more_modular_golems.datagen.MMGRecipeGen;
+import net.dadamalda.more_modular_golems.datagen.MMGTagGen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -61,6 +68,10 @@ public class More_modular_golems {
 
         MMGGolemModifiers.register();
 
+        MMGCompatManager.register();
+
+        modEventBus.addListener(EventPriority.HIGH, this::gatherData);
+
         // Register the item to a creative tab
         // modEventBus.addListener(this::addCreative);
 
@@ -71,6 +82,10 @@ public class More_modular_golems {
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
+
+        event.enqueueWork(() -> {
+            MMGCompatManager.commonSetup();
+        });
         // LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
 
         // if (Config.logDirtBlock) LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
@@ -90,6 +105,13 @@ public class More_modular_golems {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    public void gatherData(GatherDataEvent event) {
+        LOGGER.info("gatherData");
+        REGISTRATE.addDataGenerator(ProviderType.RECIPE, MMGRecipeGen::genRecipe);
+        REGISTRATE.addDataGenerator(ProviderType.LANG, MMGLangGen::genLang);
+        REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, MMGTagGen::genItemTags);
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

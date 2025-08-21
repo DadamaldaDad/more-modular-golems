@@ -18,7 +18,7 @@ import java.util.Objects;
 public class TastyModifier extends GolemModifier {
 
     public TastyModifier() {
-        super(StatFilterType.HEALTH, 1);
+        super(StatFilterType.MASS, 5);
     }
 
     @Override
@@ -26,9 +26,9 @@ public class TastyModifier extends GolemModifier {
         if(!(player instanceof ServerPlayer serverPlayer)) return InteractionResult.PASS;
         ServerLevel level = serverPlayer.serverLevel();
 
-        float damageAmount = 10F * value;
-        int restoredHunger = 2 * value;
-        float restoredSaturation = 1.0F;
+        float damageAmount = 5F * value;
+        int restoredHunger = value;
+        float restoredSaturation = 0.4F;
         boolean canAlwaysEat = false;
 
         if(!Objects.equals(golem.getOwnerUUID(), serverPlayer.getUUID())) return InteractionResult.PASS;
